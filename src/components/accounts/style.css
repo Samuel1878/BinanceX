@@ -1,0 +1,777 @@
+.NavBarContainer {
+    position:relative;
+    display:flex;
+    justify-content: space-between;
+    background-color: var(--bg-color);
+}
+.NavBarContainer .LoGoContainer a {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+}
+.NavBarContainer .LoGoContainer a i {
+    font-size: 2.1em;
+    color: var(--main-color);
+    margin-left: 20px;
+}
+.NavBarContainer .LoGoContainer a h3 {
+    font-size: 1.6em;
+    color:var(--main-color);
+    margin:10px;
+    font-weight: 800;
+}
+.NavBarContainer .NavRightCon {
+    display: flex;
+    align-items: center;
+}
+
+.NavBarContainer .NavRightCon i
+ {
+    margin:10px;
+    font-size: 1.3em;
+    color:var(--title);
+}
+.NavBarContainer .NavRightCon .Mode {
+    position:relative;
+}
+.NavBarContainer .NavRightCon .Mode::after{
+    content: "";
+    position: absolute;
+    top:0;bottom:0;left:-10%;
+    background-color:var(--textLow);
+    width:5%;
+    height:50%;
+    margin:auto;
+}
+.NavBarContainer .NavRightCon .Mode i {
+    font-size: 1.2em;
+    margin:10px;
+    margin-right:10px;
+}
+.NavBarContainer .NavPopUp {
+    display: none;
+    position: relative;
+    margin:auto 20px;
+}
+.NavBarContainer .NavPopUp i {
+    font-size: 2em;
+    color:var(--title);
+}
+
+.Xontainer {
+    background-color: var(--bg-color);
+    box-sizing: border-box;
+    min-height:100vh;
+    display: flex;
+    overflow: hidden;
+  
+}
+.Xontainer .accleft {
+    width:50%;
+    height:90%;
+    background-color: transparent;
+    backdrop-filter: blur(10px);
+    margin:auto;
+    display: flex;
+    justify-content: center;
+
+
+}
+.Xontainer .accleft div {
+    display:flex;
+    flex-direction: column;
+}
+.Xontainer .accleft div h1 {
+    color:var(--title);
+    font-size: 2em;
+    font-weight: 500;
+}
+.Xontainer .accleft div button {
+    padding:20px;
+    margin:10px 0px;
+    background-color: var(--btn);
+    border:none;
+    border-radius: 5px;
+    position: relative;
+    z-index: 1;
+    transition: all .3s;
+}
+.Xontainer .accleft div button:hover {
+    background-color: var(--hover);
+}
+.Xontainer .accleft div button span {
+    color:var(--main-color);
+    font-size: 1.1em;
+    font-weight: 500;
+}
+.Xontainer .accleft div button i {
+    margin-right:5px;
+    color:var(--main-color);
+    font-size: 1.4em;
+}
+.Xontainer .accleft div div {
+    display:flex;
+    flex-direction: row;
+}
+.Xontainer .accleft div p {
+    color:var(--textLow);
+    font-size: .7em;
+    margin:40px 5px;
+    font-style: italic;
+}
+.Xontainer .accleft div p a {
+    text-decoration: none;
+    color:var(--textLow1);
+}
+.Xontainer .accleft div div span {
+    color:var(--title);
+    margin:auto 10px;
+
+}
+.Xontainer .accleft div div a {
+    text-decoration: none;
+    color:var(--main-color);
+    font-weight: 600;
+}
+.Xontainer .accright {
+    width:50%;
+    height:80%;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    margin:auto;
+}
+.Xontainer .accright img {
+    width:300px;
+    height:300px;
+    
+}
+.Xontainer .accright div {
+    display: block;
+}
+.Xontainer .accright div h3 {
+    color:var(--title);
+    text-align: center;
+}
+.Xontainer .accright div p {
+    color:var(--textLow1);
+    line-height: 35px;
+    text-align: center;
+}
+#Mbtn {
+    background-color: var(--main-color);
+    outline: none;
+    border: none;
+    position: relative;
+}
+#Mbtn i {
+    color: black;
+}
+#Mbtn span {
+    color:var(--bg-color)
+}
+#Mbtn::after {
+    content: "";
+    position:absolute;
+    top:0;right:0;
+    height:100%;
+    width:0;
+    background-color: var(--hover);
+    transition: .3s ease-in-out;
+    z-index: -1;
+}
+#Mbtn:hover::after {
+    left:0;
+    width:100%;
+    border-radius: 5px;
+}
+#Mbtn:hover span, 
+#Mbtn:hover i{
+    color:var(--main-color)
+}
+
+/** Login FOrm*/
+.Body {
+    width:100%;
+    height: 100vh;
+    overflow: hidden;
+    background-color: var(--bg-color);
+}
+.container{
+    display:flex;
+    justify-content: space-between;
+    align-items: center;
+    width:100%; 
+    height:100%;
+    background-color: var(--bg-color);
+}
+.container .LoginLeft {
+    width:50%;
+    height:100%;
+    position: relative;
+
+    
+}
+.container .LoginLeft form {
+    width:360px;
+    height:300px;
+    margin:100px auto; 
+    padding:10px;
+    position: relative;
+}
+.container .LoginLeft form h1 {
+    color:var(--title);
+    font-size: 2em;
+}
+.container .LoginLeft form .inputBox {
+    width:100%;
+    height:50px;
+    margin:30px 0;
+    position: relative;
+    border-bottom: 2px solid var(--textLow1);
+}
+.container .LoginLeft form .inputBox label {
+    position:absolute;
+    font-size: 1em;
+    color:var(--title);
+    top:50%;
+    left:5px;
+    transform: translateY(-50%);
+    pointer-events: none;
+    transition: all .3s linear;
+}
+.container .LoginLeft form .inputBox input {
+    width:100%;
+    background-color: transparent;
+    border: none;
+    padding: 0 35px 0 5px;
+    height:100%;
+    color:var(--main-color);
+    outline: none;
+  
+}
+.container .LoginLeft form .inputBox i {
+    position: absolute;
+    right:10px;
+    color:var(--title);
+    line-height: 50px;
+    font-size: 1.2em;
+}
+.container .LoginLeft form .remember-forgot {
+    display:flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.container .LoginLeft form .remember-forgot div  {
+    display:flex;
+    align-items: center;
+    position:relative;
+}
+.container .LoginLeft form .remember-forgot div input{
+   cursor: pointer;
+   background-color: var(--main-color);
+  
+}
+.container .LoginLeft form .remember-forgot div label {
+    color:var(--textLow1);
+    font-size: .9em;
+    margin-left: 10px;
+    
+}
+.container .LoginLeft form .remember-forgot a { color:var(--main-color)
+    
+}
+.container .LoginLeft form .Submit {
+    width:100%;
+}
+#BUTTON {
+    width:100%;
+    background-color: var(--main-color);
+    border: none;
+    border-radius: 5px;
+    margin:20px 0;
+    position: relative;
+    z-index: 1;
+    padding:12px;
+    font-weight: 600;
+}
+#BUTTON::after {
+    content: "";
+    position: absolute;
+    width:0;
+    height:100%;
+    top:0;right:0;bottom:0;
+    border-radius: 5px;
+    z-index: -1;
+    background-color: var(--hover);
+    transition: all .3s;
+}
+#BUTTON:hover {
+    color:var(--main-color)
+}
+#BUTTON:hover::after{
+    width:100%;
+    left:0;
+}
+.container .LoginLeft form .Register {
+    margin:10px 0px;
+    display:flex;
+}
+.container .LoginLeft form .Register p {
+    color:var(--textLow);
+    font-style: italic;
+}
+.container .LoginLeft form .Register a {
+    text-decoration: none;
+    color:var(--main-color);
+    margin-left:10px;
+}
+
+
+
+
+.container .LoginRight {
+    width:50%;
+    height:70%;
+    margin:auto;
+}
+.container .LoginRight img {
+    width:400px;
+    height:400px;
+}
+
+
+/*** Register ........**/
+
+.RegiCon {
+    width:100%;
+    min-height:100vh;
+    background-color: var(--bg-color);
+    display:flex;
+    justify-content: center;
+  
+
+}
+.RegiCon .Mother {
+    max-width:500px;
+    height:600px;
+    padding:5px;
+ 
+    
+}
+.RegiCon .Mother h1 {
+    color:var(--title);
+}
+.RegiCon .Mother div {
+    padding:5px;
+    height:55px;
+    display:flex;
+}
+.RegiCon .Mother div button {
+    color:var(--title);
+    width:100%;
+    height:100%;
+    border: none;
+    outline: none;
+    background-color:transparent;
+    margin:5px;
+    border-radius: 5px;
+
+}
+.RegiCon .Mother div button:hover,
+#active {
+    background-color: var(--hover);
+}
+#NoActive {
+    background-color: transparent;
+}
+.RegiCon .Mother form {
+    display: flex;
+    flex-direction: column;
+}
+.RegiCon .Mother form .PsInput {
+    margin-top:30px;
+    position:relative;
+    border-bottom: 2px solid var(--textLow1);
+    
+}
+.RegiCon .Mother form .PsInput label {
+    position:absolute;
+    color:var(--title);
+    top:50%;
+    left:5px;
+    transform: translateY(-50%);
+    pointer-events: none;
+    transition: all .3s linear;
+}
+.RegiCon .Mother form .PsInput input {
+    background-color: transparent;
+    outline: none;
+    border: none;
+    color:var(--main-color);
+    width:100%;
+}
+.RegiCon .Mother form .PsInput i {
+    position:absolute;
+    right:30px;
+    color:var(--title);
+}
+
+.RegiCon .Mother form .PsConfirm {
+    width:100%;
+    position:relative;
+    margin-top:30px;
+    border-bottom: 2px solid var(--textLow1);
+}
+.RegiCon .Mother form .PsConfirm label {
+    position:absolute;
+    color:var(--title);
+    top:50%;
+    left:5px;
+    transform: translateY(-50%);
+    pointer-events: none;
+    transition: all .3s linear;
+}
+.RegiCon .Mother form .PsConfirm input {
+    background-color: transparent;
+    outline: none;
+    border: none;
+    color:var(--main-color);
+    width:100%;
+}
+
+
+.RegiCon .Mother form .CbInput {
+    margin:auto;
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+.RegiCon .Mother form .CbInput input{
+   background-color:var(--bg-color);
+   cursor: pointer;
+}
+.noneDis {
+    display:none;
+}
+
+.RegiCon .Mother form .CbInput label {
+    color:var(--textLow1);
+    padding-left:10px;
+    position: relative;
+    
+}
+.RegiCon .Mother form div button {
+    width:100%;
+    background: var(--main-color);
+    color:black;
+    margin:0 auto;
+}
+.RegiCon .Mother form div p {
+    color:var(--textLow);
+    margin:15px 0;
+
+}
+.RegiCon .Mother form div p a {
+    color:var(--main-color);
+    text-decoration: none;
+    font-weight: 600;
+}
+.RegiCon .Mother form div p2{
+    font-style: italic;
+    color:var(--main-color)
+}
+
+
+
+.EmailInPut {
+    margin:30px auto;
+    width:100%;
+    position: relative;
+    border-bottom: 2px solid var(--textLow1);
+}
+.EmailInPut label {
+    position: absolute;
+    color:var(--title);
+    top:50%;
+    left:5px;
+    transform: translateY(-50%);
+    pointer-events: none;
+    transition: all .3s linear;
+}
+.EmailInPut input {
+    width:100%;
+    background-color: transparent;
+    border: none;
+    outline: none;
+    color:var(--main-color);
+}
+.emailVerify {
+    margin: auto;
+    width:100%;
+    display:flex;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+}
+
+.emailVerify .verifyCode {
+    position: relative;
+    width:70%;
+    border-bottom: 2px solid var(--textLow1);
+}
+.emailVerify .verifyCode label {
+    position: absolute;
+    color:var(--title);
+    top:50%;
+    transform: translateY(-50%);
+    pointer-events: none;
+    transition: all .3s;
+}
+.emailVerify .verifyCode input {
+    background-color: transparent;
+    outline: none;
+    border:none;
+    width:100%;
+    color:var(--main-color)
+}
+#NotV {
+    position: absolute;
+    width:30px;
+    height:30px;
+    right:0px;
+    z-index: 1;
+    top:30%;
+    
+}
+#NotV i {
+    font-size: 1.1em;
+    color: red;
+}
+#Ver {
+    position: absolute;
+    width:30px;
+    height:30px;
+    right:0px;
+    z-index: 1;
+    top:30%;
+
+}
+#Ver i {
+    font-size: 1.1em;
+    color:var(--main-color)
+}
+.emailVerify .sentBTN {
+    position:relative;
+    width:25%;
+    margin:auto;
+}
+#sendVerifyCode {
+    width:120px;
+   
+}
+#sendVerifyCode:hover {
+    transform: scale(1.1);
+    opacity: .7;
+    background-color: var(--main-color);
+}
+#Counter {
+    width:120px;
+    border-radius: 5px;
+    border:none;
+    background-color: var(--textLow1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin:auto;
+    height:95%;
+    color:black;
+    position:relative;
+    color:var(--main-color)
+
+}
+#Counter p {
+    font-size: .6em;
+    color: var(--main-color);
+    position: absolute;
+    bottom:-80%;
+}
+.NumberInput {
+    margin:30px auto;
+    display:flex;
+    justify-content: space-between;
+    width:100%;
+}
+.NumberInput .Numm{
+    border-bottom: 2px solid var(--textLow1);
+    width:70%;
+    position:relative;
+}
+.NumberInput .AreaCode {
+    position:relative;
+    width:26%;
+    border-bottom: 2px solid var(--textLow1);
+}
+.NumberInput div label {
+    position: absolute;
+    color:var(--title);
+    top:50%;
+    left:5px;
+    transform: translateY(-50%);
+    pointer-events: none;
+    transition: all .3s linear;
+}
+.NumberInput div input {
+    width:100%;
+    outline: none;
+    border: none;
+    background-color: transparent;
+    color:var(--main-color);
+}
+.NumberVerify {
+    width:100%;
+    display: flex;
+}
+.NumberVerify .verifyCode {
+    position: relative;
+    width:70%;
+    border-bottom: 2px solid var(--textLow1);
+}
+.NumberVerify .verifyCode label {
+    position: absolute;
+    color:var(--title);
+    top:50%;
+    transform: translateY(-50%);
+    pointer-events: none;
+    transition: all .3s;
+}
+.NumberVerify .verifyCode input {
+    background-color: transparent;
+    outline: none;
+    border:none;
+    width:100%;
+    color:var(--main-color)
+}
+.NumberVerify #no-ver-send {
+    background-color: var(--main-color);
+    width:25%;
+    margin:auto;
+}
+.NumberVerify #no-ver-send:hover,.SENT {
+    transform: scale(1.1);
+    opacity: .7;
+}
+
+
+
+
+
+#FOC {
+    position: absolute;
+    top:-5px;
+}
+#CLOSE {
+    top:50%;
+}
+#pwdNote {
+    font-size: .6em;
+    position: absolute;
+    bottom:-80%;
+    color:var(--main-color);
+    transition: all .3s;
+}
+.BlockCl {
+    opacity: 1;
+}
+.NoneCl {
+    opacity: 0;
+}
+
+@media (max-width:1048px) {
+    .container {
+        flex-direction: column;
+        min-height:1040px;
+    }
+    .container .LoginRight {
+       width:90%;
+       height:60%;
+       display:flex;
+       align-items: center;
+       justify-content: center;
+       margin:0 auto;
+    }
+    .container .LoginLeft {
+        width:90%;
+        height:40%;
+        margin:0 auto;
+    }
+    .container .LoginLeft form {
+        width:600px;
+        height:650px;
+    }
+}
+
+@media (max-width:787px) {
+    .container {
+       height:800px;
+    }
+    .container .LoginRight {
+        display:none;
+    }
+    .container .LoginLeft {
+        height:100%;
+        width:100%;
+    }
+    .container .LoginLeft h1{
+        text-align: center;
+    }
+    .container .LoginLeft form {
+        width:95%;
+        margin:0 auto;
+    }
+    #BUTTON {
+        height:35px;
+    }
+    .Xontainer {
+        flex-direction: column-reverse;
+        height:auto;
+    }
+    .Xontainer .accleft {
+        width:95%;
+        height:50%;
+        margin:0 auto;
+    }
+    .Xontainer .accright {
+        width:95%;
+        height:50%;
+        margin:0 auto;
+        align-items: center;
+    }
+    .Xontainer .accleft div {
+        width:100%;
+    
+    }
+    .Xontainer .accright div {
+        display:none;
+    }
+    .NavBarContainer .NavRightCon {
+        display:none;
+    }
+    .NavBarContainer .NavPopUp {
+        display:block;
+    }
+}
+@media (max-width:440px) {
+    .container {
+        height:890px;
+        
+    };
+}
+@media (max-height:600px) {
+    .container {
+        height:800px;
+    }
+    .container .LoginRight {
+        display:none;
+    }
+}
