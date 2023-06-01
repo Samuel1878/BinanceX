@@ -2,9 +2,8 @@
 /*import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
-  value: "dark",
+  value: "",
 }
-
 export const themeSlice = createSlice({
   name: 'theme',
   initialState,
@@ -23,4 +22,4 @@ export const themeSlice = createSlice({
 // Action creators are generated for each case reducer function
 export const { dark, light } = themeSlice.actions
 
-export default themeSlice.reducer
+export default themeSlice.reducer*/

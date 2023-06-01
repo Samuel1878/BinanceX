@@ -1,9 +1,9 @@
-const {Novu} = require("@novu/node");
-const User = require("../models/Register");
-const { generatePath } = require("react-router-dom");
-require("dotenv").config();
+import {Novu} from "@novu/node";
+import User from "../models/Register.js";
+import { generatePath } from "react-router-dom";
+
 const novu = new Novu(process.env.NOVU);
-module.exports = {
+const registerationInsert  = {
     userForm:(req,res,next)=>{
         res.status(200).send("user_FORM");
         res.end()
@@ -49,3 +49,4 @@ module.exports = {
         (userEmail!=="")?sendViaNovu(userEmail,generateCode):res.send("Email not valid")
     }
 }
+export default registerationInsert;

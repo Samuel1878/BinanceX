@@ -1,7 +1,7 @@
 import "../Ani.css"
 import { useNavigate } from "react-router-dom";
 import {useGetCryptosQuery} from "../Services/CryptoAPI.js";
-import Loader from "./loader";
+import {Loader} from "./loader";
 import { useEffect, useState } from "react";
 import millify from "millify";
 import * as React from 'react';

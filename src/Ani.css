@@ -515,7 +515,134 @@
     background-color: var(--textLow);
 
 }
-   
+
+/** Markets Overview**/
+.Markets_Overview {
+    padding:0;
+    margin:0;
+}
+
+.Markets_Overview section {
+    height:auto;
+    position: relative;
+    background-color: var(--black-bg);
+}
+.Markets_Overview section header {
+    margin:0 auto;
+    width:80%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+}
+.Markets_Overview section header div h2 {
+    font-size: 1.7em;
+    font-weight: 800;
+    color:var(--title);
+}
+.Markets_Overview section header div p {
+    color: var(--textLow);
+}
+.Markets_Overview section header div p span {
+    margin:0 10px;
+    color:var(--main-color);
+    font-weight: 600;
+}
+.Markets_Overview section header #trading_data {
+    display: flex;
+    align-items: flex-end;
+}
+.Markets_Overview section header #trading_data h3{
+    font-size: 1em;
+    font-weight: 600;
+    background-image: -webkit-linear-gradient(to right, var(--main-color),var(--textLow), var(--second));
+    background: linear-gradient(to right,var(--main-color),var(--textLow), var(--second));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+.Markets_Overview section header #trading_data img {
+    height:45px;
+    width:45px;
+    margin:0 10px;
+}
+
+.Markets_Overview section .dataBoxContainer {
+    width:80%;
+    margin:0 auto;
+    display: flex;
+    justify-content: space-between;
+}
+.Markets_Overview section .dataBoxContainer .dataBox {
+    padding:20px;
+    border-radius: 10px;
+}
+.Markets_Overview section .dataBoxContainer .dataBox:hover {
+    background-color: var(--hover);
+}
+.Markets_Overview section .dataBoxContainer .dataBox h5 {
+    color:var(--textLow1);
+    font-size: .8em;
+}
+
+
+/**Spot Trade**/
+#spotTrade {
+    background-color: var(--bg-color);
+    max-height: fit-content;
+}
+#spotTrade header {
+    position: relative;
+    display: flex;
+    border-top: .5px solid var(--textLow1);
+    border-bottom:.5px solid var(--textLow1);
+}
+#spotTrade header .pair {
+    display: flex;
+    border-right:.5px solid var(--textLow1);
+    padding:15px;
+    align-items: center;
+}
+#spotTrade header .pair i {
+    color:var(--title);
+    font-size: 1.5em;
+    font-weight: 600;
+    margin:auto 10px;
+}
+#spotTrade header .pair h3 {
+    color:var(--textLow);
+    font-weight: 600;
+    font-size: 1.5em;
+    margin:15px
+}
+#spotTrade header ._24hTicker {
+    display:flex;
+    justify-content: space-around;
+}
+#spotTrade header ._24hTicker .tickerBox {
+    padding:15px;
+}
+#spotTrade header ._24hTicker .tickerBox h4 {
+    color:var(--textLow);
+    font-size: .9em;
+}
+
+
+/** Spot OrderBook**/
+#spotTrade main {
+    width:100%;
+    height:100%;
+    display: flex;
+}
+
+#spotTrade main article {
+    width:30%;
+}
+#spotTrade main section {
+    width:50%;
+}
+#spotTrade main aside {
+    width:20%;
+}
    
  @keyframes ani1 {
  0% {transform: rotateY(45deg);}

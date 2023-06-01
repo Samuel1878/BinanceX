@@ -1,6 +1,5 @@
 import { Spin } from 'antd';
 
-const App = () => <Spin />;
+export const Loader = () => <Spin />;
 
 
-export default App;

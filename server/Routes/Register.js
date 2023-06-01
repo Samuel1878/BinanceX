@@ -1,10 +1,10 @@
-const registerationInsert = require("../controllers/register_controller")
-const express = require("express");
-const router = express.Router();
+import registerationInsert from "../controllers/register_controller.js";
+import express from "express";
+const routerRegis = express.Router();
 
-router.post("/2fa",registerationInsert.email2FA)
-router.post("/",registerationInsert.createData)
-router.get("/",registerationInsert.userForm)
+routerRegis.post("/2fa",registerationInsert.email2FA)
+routerRegis.post("/",registerationInsert.createData)
+routerRegis.get("/",registerationInsert.userForm)
 
 
-module.exports = router;
+export default routerRegis;

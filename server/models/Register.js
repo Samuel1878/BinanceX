@@ -1,5 +1,5 @@
-const {Schema, model} = require("mongoose");
-const mongoose = require("mongoose")
+import {Schema, model} from "mongoose";
+import  mongoose from "mongoose";
 const Register = new Schema({
     email:{
         type:String},
@@ -14,4 +14,4 @@ const Register = new Schema({
 },{timestamps:true});
 //Register.index({"$**" : "text"})
 const User = mongoose.model("User", Register);
-module.exports = User; 
+export default User; 
