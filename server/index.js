@@ -40,8 +40,6 @@ const db = mongoose.connection;
 db.on("connected",()=> logger.info("DB Connected"));
 db.on("disconnected",()=> logger.warn("DB disconnected"));
 db.on("error", ()=>logger.warn("error in connecting DB"));
-
-
 //socket.io
 socketServer(httpServer);
 
