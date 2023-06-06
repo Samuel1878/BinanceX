@@ -50,12 +50,11 @@ class SocketClient{
         return message.stream && this._handlers.has(message.stream);
       }
     heartBeat() {
-        setInterval(() => {
             if (this._ws.readyState === WebSocket.OPEN) {
                 this._ws.ping();
                 logger.debug("ping server")
             }
-        }, 5000);
+  
     }
     setHandler(method, callback) {
         if (!this._handlers.has(method)){

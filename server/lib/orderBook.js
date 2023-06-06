@@ -49,35 +49,17 @@ class OrderBook {
         }, 4000);
     }
     best_price() {
-       const Interval = setInterval(()=>{
             if (this._data == 0 || this._data.ask.length == 0) {
                 logger.debug("waiting for warming up");
-                return []
+                return {}
             }
+            logger.tip("BestPrice run onetime")
             let av = this.getAskVolume();
             let ap = this.getBestAsk();
             let bv = this.getBidVolume();
             let bp = this.getBestBid();
-
-            //streamlogger.set({
-              
-            //});
-            const orderBook = {"time": new Date().toISOString(), av : av, ap: ap, bv: bv, bp:bp}
-            if (streamlogger.has("stream")) {
-                streamlogger.delete("stream");
-                streamlogger.forEach((e)=> e = null)
-                streamlogger.set("stream", orderBook);
-                logger.tip("ifTrue==============");
-                return;
-                
-            } 
-            streamlogger.set("stream", orderBook);
-            logger.tip("ifFalse==============")
-        },1000);
-        
-        
+    return {"time": new Date().toISOString(), av : av, ap: ap, bv: bv, bp:bp}      
     }
-        
     
 }
 export default OrderBook;

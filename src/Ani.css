@@ -637,6 +637,61 @@
 #spotTrade main article {
     width:30%;
 }
+
+#spotTrade main article table {
+    width:100%;
+    position: relative;
+    border-right: 1px solid var(--textLow);
+    padding:10px;
+}
+#spotTrade main article table tr {
+    position: relative;
+}
+#spotTrade main article table tr th {
+    color:var(--title);
+    font-size: .7em;
+    margin-right: 20px;
+}
+
+
+#spotTrade main article table #sellOrder {
+    position: relative;
+}
+#sellDepth {
+    position: absolute;
+    height:100%;
+    background-color: var(--bear);
+    opacity: .3;
+    right:0;
+}
+#buyDepth {
+    position: absolute;
+    height:100%;
+    background-color: var(--bull);
+    opacity: .3;
+    right:0;
+}
+
+
+#spotTrade main article table #sellOrder td:first-child{
+    color:var(--bear);
+}
+#spotTrade main article table #sellOrder td:last-child {
+    text-align: end;
+}
+#spotTrade main article table #buyOrder td:first-child{
+    color:var(--bull);
+}
+#spotTrade main article table #buyOrder td:last-child {
+  text-align: end;
+}
+#spotTrade main article table tr td {
+    color:var(--textLow);
+}
+#spotTrade main article table #sellOrder:hover,
+#spotTrade main article table #buyOrder:hover{
+    border-bottom: 1px dashed var(--text);
+}
 #spotTrade main section {
     width:50%;
 }

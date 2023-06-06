@@ -3,26 +3,23 @@ import {socket, socketSpot} from "../API/WebSocket";
 function Trade() {
     const [pair, setPair] = useState("BTCUSDT");
     const [stream, setStream] = useState();
-    const [snapShot, setSnapShot] = useState();
+    const [snapShot, setSnapShot] = useState(null);
     
     useEffect(()=>{
         socketSpot.connect();
         socketSpot.on("connect", () =>{
             console.log("socketSpot connected");
         });
-        socketSpot.on("Spot_OrderBook_SnapShot", (data)=>{
-            console.log(data);
-            setSnapShot(data)
-        });
-     
-        
         socketSpot.emit("Spot_OrderBook_Req", pair,()=>{
             console.log("spotEmitted OrderBook emitted");
+        });
+        socketSpot.on("Spot_OrderBook_SnapShot", (data)=>{
+            console.log(data);
+            setSnapShot(data);
         });
        
     },[])
         socketSpot.off("asks_bidsStream").on("asks_bidsStream", (data)=>{
-            console.log(data);
             if (data){
                 setStream(data);
                 return
@@ -30,6 +27,26 @@ function Trade() {
                 setStream("");
             }
         });
+    useEffect(()=>{
+        if(stream) {
+            const {ap, av , bp, bv} =  stream
+            if(ap && av)  {
+                const askStream = [ap, av];
+                const bidStream = [bp, bv];
+                snapShot?.asks.unshift(askStream);
+                snapShot?.asks.pop();
+                snapShot?.bids.unshift(bidStream);
+                snapShot?.bids.pop();
+                console.log(snapShot.asks.length);
+            }if (ap === "undefined" || "null") {
+                console.log(ap + ":" + av)
+            } else {
+                
+            }
+            
+        }
+        
+    },[stream])
       
   
    
@@ -76,37 +93,42 @@ function Trade() {
         </div>
     </header>
     <main>
-        <article>
+        <article id="orderBook">
             <table>
                 <tr>
                     <th>
                         Price(USDT)
                     </th>
                     <th>
-                        Amount<span>BTC</span>
+                        Amount(`${pair}`)
                     </th>
                     <th>
-                        Total
+                        Total(USDT)
                     </th>
                 </tr>
-                <tr id="sellOrder">
-                    <td>13123123</td>
-                    <td>13123123</td>
-                    <td>13123123</td>
-                </tr>
+            {snapShot?.asks.map((ask)=>(
+            <tr id="sellOrder">
+                <td>{parseFloat(ask[0]).toFixed(1)}</td>
+                <td>{ask[1].slice(0,7)}</td>
+                <td>{parseFloat(ask[0]*ask[1]).toFixed(3)}</td>
+                <div id="sellDepth" style={{width:`${(ask[1]/10)*100}%`}}></div>
+            </tr>)
+            )}
                 <div>Current Price Change</div>
+            {snapShot?.bids.map((bid)=>(
                 <tr id="buyOrder">
-                    <td>123123123</td>
-                    <td>13123123</td>
-                    <td>13123123</td>
+                    <td>{parseFloat(bid[0]).toFixed(1)}</td>
+                    <td>{(bid[1]).slice(0,7)}</td>
+                    <td>{parseFloat(bid[0] * bid[1]).toFixed(3) }</td>
+                    <div id="buyDepth" style={{width:`${(bid[1]/10)*100}%`}}></div>
                 </tr>
-
+            ))}
             </table>
         </article>
         <section>
 
         </section>
-        <aside>
+        <aside id="tradeBook">
 
         </aside>
 

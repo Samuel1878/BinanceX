@@ -9,7 +9,7 @@ import dataLogger from "../lib/__dataTransfer.js";
 
 const SYMBOL = "BTCUSDT"; 
  
-export default async function createApp(e) {
+export default async function createApp(e, socket) {
     logger.info("start orderbook route");
     let SYMBOL = e || "BTCUSDT";
     const socketApi = new SocketClient(`ws/${SYMBOL.toLowerCase()}@depth`);
@@ -25,8 +25,20 @@ export default async function createApp(e) {
 
     //orderBook.inspect();
     getServerTime().then(data => console.log(data));
-    getOrderBookSnapshot(SYMBOL).then(data => dataLogger.set("_data",data)).then(logger.tip("Got==========Snapshot"));
-    orderBook.best_price();
+
+    const response = await getOrderBookSnapshot(SYMBOL);
+    socket.emit("Spot_OrderBook_SnapShot" ,response );
+ 
+
+    const Streaminterval = setInterval(()=>{
+        const streamData = orderBook.best_price();
+    socket.emit("asks_bidsStream", streamData )
+    },1000);
+
+    socket.on("disconnect", (reason)=>{
+    logger.tip(reason);
+    clearInterval(Streaminterval);
+  })
 
     //const socketClient = new SocketClient(`ws/${e.toLowerCase()}@bookTicker`);
    // socketClient.setHandler('depthUpdate', (params) =>      logger.debug((JSON.stringify(params))));
