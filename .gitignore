@@ -5,6 +5,13 @@
 /env
 /package.json
 /package-lock.json
+#from Server
+*.env
+# ignore doc/notes.txt, but not doc/server/arch.txt
+server/*.env
+
+# ignore all .pdf files in the doc/ directory and any of its subdirectories
+server/**/*.env
 
 # testing
 /coverage

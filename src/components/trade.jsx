@@ -1,10 +1,16 @@
 import { useEffect, useState } from "react";
 import {socket, socketSpot} from "../API/WebSocket";
+import { Loader } from "./loader";
 function Trade() {
     const [pair, setPair] = useState("BTCUSDT");
+    const [coin, setCoin] = useState("BTC");
     const [stream, setStream] = useState();
     const [snapShot, setSnapShot] = useState(null);
+    const [ticker, setTicker] = useState(null);
+    const [currentPrice, setCurrent] = useState("");
     
+
+
     useEffect(()=>{
         socketSpot.connect();
         socketSpot.on("connect", () =>{
@@ -13,12 +19,15 @@ function Trade() {
         socketSpot.emit("Spot_OrderBook_Req", pair,()=>{
             console.log("spotEmitted OrderBook emitted");
         });
+        socketSpot.emit("ticker_req", pair,()=>{
+            console.log("ticker_req emitted");
+        })
         socketSpot.on("Spot_OrderBook_SnapShot", (data)=>{
             console.log(data);
             setSnapShot(data);
         });
        
-    },[])
+    },[pair])
         socketSpot.off("asks_bidsStream").on("asks_bidsStream", (data)=>{
             if (data){
                 setStream(data);
@@ -37,58 +46,85 @@ function Trade() {
                 snapShot?.asks.pop();
                 snapShot?.bids.unshift(bidStream);
                 snapShot?.bids.pop();
-                console.log(snapShot.asks.length);
-            }if (ap === "undefined" || "null") {
-                console.log(ap + ":" + av)
-            } else {
-                
-            }
-            
+                return;
+            }  
         }
-        
-    },[stream])
+    },[stream]);
+
+    socketSpot.off("ticker").on("ticker", (data)=>{
+        setTicker(data);
+    });
+    const TickerBook = new Map([]);
+    useEffect(()=>{
+        if(ticker) {
+            setCurrent(ticker.c);
+            var last_price = "";
+            if (TickerBook.has("last_price")){
+                last_price = TickerBook.get("last_price");
+                TickerBook.set("current", currentPrice);
+                return;
+            } else if(TickerBook.has("current")) {
+                last_price = TickerBook.get("current");
+                TickerBook.set("last_price", last_price);
+                TickerBook.set("current", currentPrice);
+                return;
+            } else {
+                TickerBook.set("last_price", currentPrice);
+            }
+        }
+        console.log(TickerBook);
+        console.log(last_price);
+    },[ticker]);
       
-  
-   
+    if (!snapShot && !ticker) {
+        return (<Loader/>)
+    }
 
     return <div id="spotTrade">
     <header>
         <div className="pair">
             <i className="fa-solid fa-bars"></i>
-            <h3> {pair} </h3>
+            <h3> {coin} /USDT </h3>
         </div>
         <div className="_24hTicker">
                 <div className="tickerBox">
-                    <h4>
-                        Current Price
-                    </h4>
+                    <h2>
+                        {parseFloat(currentPrice).toFixed(2)}
+                    </h2>
+                    <h3>${parseFloat(currentPrice).toFixed(2)}</h3>
                 </div>
                 <div className="tickerBox">
-                    <h4>
-                        24h Change
-                    </h4>
+                    <h4>24h Change</h4>
+                    <div>
+                        <p style={{color:`${(ticker?.p>0)?`var(--bull)`:`var(--bear)` }`}} >{parseFloat(ticker?.p).toFixed(2)}</p>
+                        <span style={{color:`${(ticker?.P>0)?`var(--bull)`:`var(--bear)` }`}}>{ticker?.P} %</span>
+                    </div>
 
                 </div>
                 <div className="tickerBox">
                     <h4>
                         24h High
                     </h4>
+                    <p>{parseFloat(ticker?.h).toFixed(2)}</p>
                 </div>
                 <div className="tickerBox">
                     <h4>
                         24h Low
                     </h4>
+                    <p>{parseFloat(ticker?.l).toFixed(2)}</p>
 
                 </div>
                 <div className="tickerBox">
                     <h4>
-                        24h Volume
+                        24h Volume({coin})
                     </h4>
+                    <p>{parseFloat(ticker?.v).toFixed(2)}</p>
                 </div>
                 <div className="tickerBox">
                     <h4>
                         24h Volume(USDT)
                     </h4>
+                    <p>{parseFloat(ticker?.c * ticker?.v).toFixed(2)}</p>
                 </div>
         </div>
     </header>
@@ -100,7 +136,7 @@ function Trade() {
                         Price(USDT)
                     </th>
                     <th>
-                        Amount(`${pair}`)
+                        Amount({coin})
                     </th>
                     <th>
                         Total(USDT)
@@ -114,7 +150,7 @@ function Trade() {
                 <div id="sellDepth" style={{width:`${(ask[1]/10)*100}%`}}></div>
             </tr>)
             )}
-                <div>Current Price Change</div>
+                <div>{parseFloat(currentPrice).toFixed(2)}</div>
             {snapShot?.bids.map((bid)=>(
                 <tr id="buyOrder">
                     <td>{parseFloat(bid[0]).toFixed(1)}</td>
@@ -129,10 +165,27 @@ function Trade() {
 
         </section>
         <aside id="tradeBook">
+            <h4>Market Trades</h4>
+            <table>
+                <tr>
+                    <th>
+                        Price(USDT)
+                    </th>
+                    <th>
+                        Amount({coin})
+                    </th>
+                    <th>
+                        Time
+                    </th>
+                </tr>
+            </table>
 
         </aside>
 
     </main>
+    <footer>
+
+    </footer>
     </div>
 }
 export default Trade
