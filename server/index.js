@@ -26,7 +26,6 @@ app.use(bodyparser.urlencoded({ extended: true }))
 app.use(bodyparser.json())
 app.use(express.json());
 
-
 app.use("/api/login",routerLogin );
 app.use("/api/register", routerRegis);
 app.use(express.static(path.join(__dirname, "..", "build")));
@@ -48,8 +47,4 @@ httpServer.listen(process.env.PORT, (err)=>{
     logger.info(`A server is runing at ${process.env.PORT}`)
 
 });
-
-
-
-//websocket 
 
