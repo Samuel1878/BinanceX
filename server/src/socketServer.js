@@ -3,6 +3,7 @@ import logger from "../lib/logger.js";
 import createApp from "./spot.js";
 import dataLogger,{streamlogger} from "../lib/__dataTransfer.js";
 import OrderBook from "../lib/orderBook.js";
+import miniTicker from "./miniTicker.js";
 
 export const socketServer = (server) => {
     const io = new Server(server);
@@ -21,7 +22,10 @@ export const socketServer = (server) => {
     socketSpot.on("connection", (socket) => {
         logger.info("a socket is connected to Spot from:" + socket.id);
         socket.on("Spot_OrderBook_Req", (e)=>{
-            createApp(e, socket)
+            createApp(e, socket);
+        });
+        socket.on("ticker_req", (e) => {
+            miniTicker(e, socket);
         })
     });  
     

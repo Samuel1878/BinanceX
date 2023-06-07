@@ -1,5 +1,6 @@
 import WebSocket from 'ws';
 import logger from "./logger.js";
+import dataLogger from './__dataTransfer.js';
 
 class SocketClient{
     constructor(path,baseUrl){
@@ -37,8 +38,10 @@ class SocketClient{
                  this._handlers.get(message.e).forEach(cb => {
                     cb(message);
                 });
+                } else if(message.e == "24hrTicker"){
+                 dataLogger.set("ticker", message);
                 } else {
-                 logger.warn('Unknown method', message);
+                    logger.warn("unknown Method", message)
                 }
             } catch (e) {
                 logger.warn("Parse message failed:", e);
