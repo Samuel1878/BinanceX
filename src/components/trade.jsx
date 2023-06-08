@@ -1,16 +1,24 @@
 import { useEffect, useState } from "react";
 import {socket, socketSpot} from "../API/WebSocket";
 import { Loader } from "./loader";
+
+import CandleStickChart from "../data/candleStickChart";
+
 function Trade() {
     const [pair, setPair] = useState("BTCUSDT");
     const [coin, setCoin] = useState("BTC");
+    const [interval, setinterval] = useState("1d");
+    const [limit, setLimit] = useState(100)
     const [stream, setStream] = useState();
     const [snapShot, setSnapShot] = useState(null);
     const [ticker, setTicker] = useState(null);
+    const [trade, setTrade] = useState(null);
+    const [tradeBook, setTradeBook] = useState([]);
     const [currentPrice, setCurrent] = useState("");
-    
 
+//candleStick
 
+//socketio connection
     useEffect(()=>{
         socketSpot.connect();
         socketSpot.on("connect", () =>{
@@ -19,15 +27,18 @@ function Trade() {
         socketSpot.emit("Spot_OrderBook_Req", pair,()=>{
             console.log("spotEmitted OrderBook emitted");
         });
-        socketSpot.emit("ticker_req", pair,()=>{
+        socketSpot.emit("ticker_trade_req", pair,()=>{
             console.log("ticker_req emitted");
-        })
+        });
         socketSpot.on("Spot_OrderBook_SnapShot", (data)=>{
-            console.log(data);
             setSnapShot(data);
         });
+        socketSpot.emit("kline_req", pair, interval, limit, ()=>{
+            console.log("kline emiited");
+        })
        
-    },[pair])
+    },[pair]);
+    //socketio orderbook stream
         socketSpot.off("asks_bidsStream").on("asks_bidsStream", (data)=>{
             if (data){
                 setStream(data);
@@ -50,7 +61,7 @@ function Trade() {
             }  
         }
     },[stream]);
-
+//socketio Ticker stream
     socketSpot.off("ticker").on("ticker", (data)=>{
         setTicker(data);
     });
@@ -72,9 +83,30 @@ function Trade() {
                 TickerBook.set("last_price", currentPrice);
             }
         }
-        console.log(TickerBook);
-        console.log(last_price);
     },[ticker]);
+    //socket io trade book
+    socketSpot.off('trade').on('trade', (data)=>{
+        if(data) {
+            setTrade(data);
+            return
+        }
+        setTrade("");
+    })
+    
+    useEffect(()=>{
+        if(trade) {
+            if(tradeBook.length >= 34) {
+                tradeBook.pop();
+                tradeBook.unshift(trade);
+                return;
+            } else if(tradeBook.length >= 0) {
+                tradeBook.unshift(trade);
+                return;
+            } else{
+                setTradeBook([trade]);
+            }
+        }
+    },[trade])
       
     if (!snapShot && !ticker) {
         return (<Loader/>)
@@ -162,11 +194,16 @@ function Trade() {
             </table>
         </article>
         <section>
+            <div id="candleStickChart">
+            <CandleStickChart value={pair}/>
 
+
+            </div>
         </section>
         <aside id="tradeBook">
             <h4>Market Trades</h4>
             <table>
+                <thead>
                 <tr>
                     <th>
                         Price(USDT)
@@ -178,6 +215,21 @@ function Trade() {
                         Time
                     </th>
                 </tr>
+                </thead>
+                <tbody>
+                {(tradeBook.length>25)?
+                    tradeBook.map((e)=>(
+                        <tr>
+                            <td style={{color:`${e.m?"var(--bull)":"var(--bear)"}`}}>{parseFloat(e.p).toFixed(2)}</td>
+                            <td>{parseFloat(e.q).toFixed(7)}</td>
+                            <td>{new Date(e.T).toLocaleString().slice(10,18)}</td>
+                        </tr>)
+                    ): <Loader/>
+                }
+
+                </tbody>
+                
+    
             </table>
 
         </aside>

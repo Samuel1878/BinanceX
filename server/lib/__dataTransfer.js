@@ -3,4 +3,4 @@ const dataLogger = new Map();
 
 export default dataLogger;
 
-export const streamlogger = new Map();
+export const candlelogger = new Map([]);

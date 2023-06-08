@@ -1,10 +1,11 @@
 import { Server } from "socket.io";
 import logger from "../lib/logger.js";
 import createApp from "./spot.js";
-import dataLogger,{streamlogger} from "../lib/__dataTransfer.js";
-import OrderBook from "../lib/orderBook.js";
 import miniTicker from "./miniTicker.js";
-
+import tradeMonitor from "./monitor-trade.js"
+import candleStickAPIreq from "./candleStick.js";
+import getCandleHistory from "../lib/services/getCandleData.js";
+import { candlelogger } from "../lib/__dataTransfer.js";
 export const socketServer = (server) => {
     const io = new Server(server);
     io.on("connection",(socket)=>{
@@ -24,8 +25,14 @@ export const socketServer = (server) => {
         socket.on("Spot_OrderBook_Req", (e)=>{
             createApp(e, socket);
         });
-        socket.on("ticker_req", (e) => {
+        socket.on("ticker_trade_req", (e) => {
             miniTicker(e, socket);
+            tradeMonitor(e, socket)
+        });
+        socket.on("kline_req", async(e,interval,limit)=>{
+            candleStickAPIreq(e, interval, socket);
+           // getCandleHistory(e, interval, limit, socket).then(data=>console.log(data));
+
         })
     });  
     

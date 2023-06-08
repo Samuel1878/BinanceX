@@ -734,13 +734,27 @@
 #spotTrade main aside table {
     padding:20px;
     width:100%;
-    height:100%;
+    overflow: scroll;
+    position: relative;
+    max-height: 745px;
+    
+}
+#spotTrade main aside table tbody {
+    position: relative;
+    max-height: 600px;
 }
 #spotTrade main aside table tr th {
     font-size: .9em;
     color: var(--textLow1);
+ 
 }
-
+#spotTrade main aside table tbody tr {
+    overflow-y: scroll;
+}
+#spotTrade main aside table tbody tr td {
+    color:var(--title);
+    font-size: .8em;
+}
 /* footer*/
 #spotTrade footer {
     width:100%;

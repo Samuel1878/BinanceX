@@ -1,7 +1,6 @@
 import logger from "./logger.js";
 import processOrderBookUpdate from "./helper/processOrderBookUpdate.js";
 import processOrderBookSnapshot from "./helper/processOrderBookSnapshot.js";
-import dataLogger, {streamlogger} from "./__dataTransfer.js";
 
 class OrderBook {
     constructor(symbol) {
