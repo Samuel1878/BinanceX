@@ -718,6 +718,29 @@
 /** Section**/
 #spotTrade main section {
     width:50%;
+    position: relative;
+}
+#spotTrade main section #intervalRow {
+    width:100%;
+    border-bottom: 1px solid var(--textLow);
+    display: flex;
+}
+#spotTrade main section #intervalRow button {
+    background-color: transparent;
+    border: none;
+    outline: none;
+    color:var(--textLow1);
+    padding:10px;
+}
+#spotTrade main section #tradingEngine {
+    margin-top:10px;
+    display: flex;
+    flex-direction: column;
+    position:relative;
+}
+#spotTrade main section #tradingEngine div {
+    height:32px;
+    position: relative;
 }
 
 /* aside*/

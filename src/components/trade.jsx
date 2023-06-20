@@ -1,14 +1,14 @@
 import { useEffect, useState } from "react";
 import {socket, socketSpot} from "../API/WebSocket";
 import { Loader } from "./loader";
+import CandleStickChartRaw from "../data/candleStickChart";
 
-import CandleStickChart from "../data/candleStickChart";
 
 function Trade() {
     const [pair, setPair] = useState("BTCUSDT");
     const [coin, setCoin] = useState("BTC");
-    const [interval, setinterval] = useState("1d");
-    const [limit, setLimit] = useState(100)
+    const [interval, setinterval] = useState("1m");
+    const [limit, setLimit] = useState("650")
     const [stream, setStream] = useState();
     const [snapShot, setSnapShot] = useState(null);
     const [ticker, setTicker] = useState(null);
@@ -195,9 +195,31 @@ function Trade() {
         </article>
         <section>
             <div id="candleStickChart">
-            <CandleStickChart value={pair}/>
+                <div id="intervalRow">
+                    <button>Time</button>
+                    <button onClick={()=>setinterval("1m")}>1m</button>
+                    <button onClick={()=>setinterval("30m")}>30m</button>
+                    <button onClick={()=>setinterval("1h")}>1h</button>
+                    <button onClick={()=>setinterval("4h")}>4h</button>
+                    <button onClick={()=>setinterval("1d")}>1d</button>
+                    <button onClick={()=>setinterval("1w")}>1w</button>
+                    <button onClick={()=>setinterval("1M")}>1M</button>
+                </div>
+            <CandleStickChartRaw value={{pair, interval, limit}}/>
+            </div>
+            <div id="tradingEngine">
+                <div>
+                    <button className="btn_trogle">
+                        Spot
+                    </button>
+                    <button className="btn_trogle">
+                        Cross 3x
+                    </button>
+                </div>
+                <div className="container_tradeEngine">
+                    
 
-
+                </div>
             </div>
         </section>
         <aside id="tradeBook">

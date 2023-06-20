@@ -3,7 +3,6 @@ import "../Ani.css";
 import {Loader} from "./loader";
 import tradingData from "../assets/tradingData.png";
 import {socket} from "../API/WebSocket";
-import CandleStickChart from "../data/candleStickChart";
 
 function Market() {
 const [cryptos, setCryptos] = useState({});
@@ -42,7 +41,7 @@ const [cryptos, setCryptos] = useState({});
             </main>
             
         </section>
-        <CandleStickChart/>
+       
     </div>
 }
 
