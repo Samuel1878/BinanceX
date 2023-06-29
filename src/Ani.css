@@ -682,14 +682,14 @@
     position: absolute;
     height:100%;
     background-color: var(--bear);
-    opacity: .3;
+    opacity: .1;
     right:0;
 }
 #buyDepth {
     position: absolute;
     height:100%;
     background-color: var(--bull);
-    opacity: .3;
+    opacity: .1;
     right:0;
 }
 
@@ -717,30 +717,115 @@
 
 /** Section**/
 #spotTrade main section {
+    display: flex;
+    flex-direction: column;
     width:50%;
     position: relative;
+    height:100%;
 }
-#spotTrade main section #intervalRow {
+#spotTrade main section #candleStickChart {
+    border-bottom: 1px solid var(--textLow);
+    height: 50%;
+}
+#spotTrade main section #candleStickChart #intervalRow {
     width:100%;
     border-bottom: 1px solid var(--textLow);
     display: flex;
 }
-#spotTrade main section #intervalRow button {
+#spotTrade main section #candleStickChart #intervalRow button {
     background-color: transparent;
     border: none;
     outline: none;
     color:var(--textLow1);
     padding:10px;
 }
-#spotTrade main section #tradingEngine {
-    margin-top:10px;
+#tradingEngine {
     display: flex;
     flex-direction: column;
     position:relative;
+    height:50%;
 }
-#spotTrade main section #tradingEngine div {
-    height:32px;
+#tradingEngine .toggleRow {
+    display: flex;
+    width:100%;
     position: relative;
+    background-color: var(--black-bg);
+}
+#tradingEngine .toggleRow button {
+    cursor:pointer;
+    background-color: transparent;
+    border: none;
+    outline:none;
+    color:var(--textLow1);
+    padding:15px 30px;
+    font-weight: 600;
+}
+#tradingEngine article {
+    width:100%;
+    padding:10px;
+    position: relative;
+}
+#tradingEngine article .toggleRowInner {
+    width:100%;
+    background-color: transparent;
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap:10px;
+}
+#tradingEngine article .toggleRowInner button {
+    cursor:pointer;
+    background-color: transparent;
+    border: none;
+    outline:none;
+    color:var(--textLow1);
+    font-weight: 500;
+    font-size: .9em;
+    white-space: nowrap;
+}
+#EnginePart {
+    margin-top:5px;
+    padding:10px;
+    width:100%;
+    height:100%;
+    position: relative;
+}
+#EnginePart .engines {
+    display:flex;
+    position: relative;
+    gap:10px;
+    width:90%;
+    margin: 0 auto;
+ 
+}
+/** trading engine Market****/
+#EnginePart #marketEngineContainer div {
+    position: relative;
+}
+
+#EnginePart #marketEngineContainer div form {
+    position: relative;
+}
+#EnginePart #marketEngineContainer div form div {
+    position:relative;
+    margin:0 auto;
+    width:100%;
+}
+#EnginePart #marketEngineContainer div form div .avblAssest {
+    color: var(--textLow);
+    font-size: .9em;
+}
+#EnginePart #marketEngineContainer div form div:first-child input {
+    border-radius: 5px;
+    background-color: var(--hover);
+    padding:5px 15px;
+    width:100%;
+}
+#EnginePart #marketEngineContainer div form div:last-child input {
+    border-radius: 5px;
+    background-color:var(--low);
+    width:100%;
+    padding:5px 30px;
 }
 
 /* aside*/

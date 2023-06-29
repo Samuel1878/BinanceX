@@ -8,8 +8,8 @@ import CandleStickChart from "./candleBook";
 const CandleStickChartRaw = (params) => {
 
     return(
+<CandleStickChart interval={params.value.interval} limit={params.value.limit} symbol={params.value.pair}/>  
       
-      <CandleStickChart interval={params.value.interval} limit={params.value.limit} symbol={params.value.pair}/>
     )
 }
 export default CandleStickChartRaw;

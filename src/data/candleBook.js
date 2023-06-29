@@ -112,7 +112,7 @@ class CandleStickChart extends Component {
 
               },
               axisX: {
-                lineThickness: 5,
+                lineThickness: 3,
                 tickLength: 0,
                 labelFormatter: function(e) {
                   return "";
@@ -174,23 +174,24 @@ class CandleStickChart extends Component {
               }]
             }],
             navigator: {
-              data: [{
+              enabled: false
+              /*data: [{
                 color: "rgb(244,207,80)",
                 dataPoints: this.state.naviSeries
               }],
               slider: {
                 minimum: new Date(this.latestTime - 3600000),
                 maximum: new Date(this.latestTime)
-              }
+              }*/
             }
         }
         const containerstyle = {
             width: "100%",
-		    height: "500px",
-		    margin: "auto",
+            height:"400px",
+		        margin: "auto",
             background: 'transparent',
             color: 'var(--textLow1)',
-            fontSize: '12px',
+            fontSize: '8px',
             padding: {
                 left: 10,
                 right: 10,

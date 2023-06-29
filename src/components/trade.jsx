@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import {socket, socketSpot} from "../API/WebSocket";
 import { Loader } from "./loader";
 import CandleStickChartRaw from "../data/candleStickChart";
+import TradeEngine from "./tradeEngine";
 
 
 function Trade() {
@@ -205,22 +206,10 @@ function Trade() {
                     <button onClick={()=>setinterval("1w")}>1w</button>
                     <button onClick={()=>setinterval("1M")}>1M</button>
                 </div>
-            <CandleStickChartRaw value={{pair, interval, limit}}/>
+                <CandleStickChartRaw value={{pair, interval, limit}}/>
             </div>
-            <div id="tradingEngine">
-                <div>
-                    <button className="btn_trogle">
-                        Spot
-                    </button>
-                    <button className="btn_trogle">
-                        Cross 3x
-                    </button>
-                </div>
-                <div className="container_tradeEngine">
-                    
-
-                </div>
-            </div>
+            <TradeEngine/>
+            
         </section>
         <aside id="tradeBook">
             <h4>Market Trades</h4>
