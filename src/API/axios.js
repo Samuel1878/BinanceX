@@ -5,5 +5,5 @@ const getRequestInstance = (config) => {
     });
   };
   
-  export default getRequestInstance;
+export default getRequestInstance;
   
